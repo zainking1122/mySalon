@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Abid Salon is a considered hair studio for cuts, colour, grooming and calm. Book your chair online."
+    />
+    <title>Abid Salon | Hair studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/hero-local.css" />
+    <link rel="stylesheet" href="/hero-renamed.css" />
+    <link rel="stylesheet" href="/service-images.css" />
+    <link rel="stylesheet" href="/booking-options.css" />
+    <link rel="stylesheet" href="/i18n.css" />
+    <link rel="stylesheet" href="/confirmation.css" />
+    <style>
+      .private-card {
+        margin-top: 22px;
+        padding: 18px;
+        background: #000;
+        color: #fff;
+        border-left: 3px solid #7ec8ff;
+      }
+      .private-card h3 {
+        font:
+          500 24px "Playfair Display",
+          Georgia,
+          serif;
+        margin: 0 0 10px;
+      }
+      .private-card p {
+        font-size: 13px;
+        margin: 3px 0;
+      }
+      body {
+        font-size: 17px;
+      }
+      .site-header nav {
+        font-size: 15px;
+      }
+      .eyebrow {
+        font-size: 12px;
+      }
+      .button {
+        font-size: 15px;
+      }
+      .service-list p {
+        font-size: 15px;
+      }
+      .service-list b {
+        font-size: 11px;
+      }
+      .service-select option {
+        background: #ffffff;
+        color: #000000;
+      }
+      .form-card label,
+      .complaint label {
+        font-size: 12px;
+      }
+      .form-card label span,
+      .complaint label span {
+        font-size: 10px;
+      }
+      .audience-options span {
+        font-size: 14px;
+      }
+      .form-status {
+        font-size: 14px;
+      }
+      .appointment-card .card-top {
+        font-size: 11px;
+      }
+      .appointment-card p {
+        font-size: 14px;
+      }
+      .loading {
+        font-size: 14px;
+      }
+      .contact-grid span {
+        font-size: 11px;
+      }
+      footer small {
+        font-size: 11px;
+      }
+    </style>
+    <style>
+      :root {
+        --ink: #f4f0e7;
+        --paper: #17201b;
+        --sage: #304238;
+        --moss: #0e1712;
+        --coral: #e39178;
+        --line: rgba(244, 240, 231, 0.2);
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .site-header {
+        background: #17201b;
+      }
+      .site-header nav > a:not(.nav-book) {
+        opacity: 0.85;
+      }
+      .button-light {
+        background: #f4f0e7;
+        color: #17201b;
+      }
+      .button-dark {
+        background: #f4f0e7;
+        color: #17201b;
+      }
+      .service-list p,
+      .section-intro > p:last-child,
+      .about-copy > p:not(.eyebrow) {
+        color: #becabe;
+      }
+      .form-card {
+        background: #26352c;
+      }
+      .form-card input,
+      .form-card select,
+      .form-card textarea,
+      .complaint input,
+      .complaint select,
+      .complaint textarea {
+        color: #f4f0e7;
+      }
+      .form-card input::placeholder,
+      .complaint input::placeholder,
+      .complaint textarea::placeholder {
+        color: #aeb9af;
+      }
+      .private-card {
+        background: #000;
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.28);
+        border-left-color: #7ec8ff;
+      }
+      .about-map {
+        background-color: #25362b;
+      }
+      .complaint,
+      .quote-band {
+        background: #304238;
+      }
+      .cards {
+        background: #0e1712;
+      }
+      .appointment-card {
+        background: #263c2e;
+      }
+      footer {
+        background: #c67562;
+        color: #17201b;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top"
+        ><span class="brand-mark">A</span><span>Abid Salon</span></a
+      >
+      <nav>
+        <a href="#services">Services</a><a href="#about">The studio</a
+        ><a class="nav-book" href="#book">Book a chair <span>↗</span></a>
+      </nav>
+      <a class="owner-link" href="/owner">Owner dashboard <span>↗</span></a>
+      <button class="menu-toggle" aria-label="Open menu">☰</button>
+    </header>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Independent hair studio · Est. 2018</p>
+          <h1>Good hair.<br /><em>Better days.</em></h1>
+          <p class="hero-text">
+            A thoughtful studio for cuts, colour and grooming. Come as you are,
+            leave a little more yourself.
+          </p>
+          <a class="button button-light" href="#book"
+            >Find your chair <span>↗</span></a
+          >
+        </div>
+        <div class="hero-image">
+          <div class="hero-photo-sequence" aria-hidden="true">
+            <span class="hero-photo--men"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--women"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--men"></span><span class="hero-photo--women"></span>
+            <span class="hero-photo--men"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--women"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--men"></span><span class="hero-photo--women"></span>
+            <span class="hero-photo--men"></span>
+            <span class="hero-photo--men"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--men"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--men"></span><span class="hero-photo--women"></span>
+            <span class="hero-photo--women"></span><span class="hero-photo--men"></span>
+            <span class="hero-photo--women"></span>
+          </div>
+          <div class="image-label">
+            Brookfield<br /><strong>18 Willow Lane</strong>
+          </div>
+        </div>
+        <div class="hero-stamp">
+          ✦<br /><small>Make room<br />for you</small>
+        </div>
+      </section>
+      <section class="marquee" aria-label="Our approach">
+        <div>
+          THE RITUAL OF A GOOD CUT <span>✦</span> THE RITUAL OF A GOOD CUT
+          <span>✦</span> THE RITUAL OF A GOOD CUT <span>✦</span>
+        </div>
+      </section>
+      <section class="services section" id="services">
+        <div class="section-intro">
+          <p class="eyebrow">What we do</p>
+          <h2>Crafted for<br /><em>your rhythm.</em></h2>
+          <p>
+            Unhurried appointments, considered details and a little time that is
+            entirely yours.
+          </p>
+        </div>
+        <div id="service-catalog" class="service-catalog" aria-live="polite"></div>
+      </section>
+      <section class="quote-band">
+        <div class="quote-mark">“</div>
+        <blockquote>
+          There is something quietly transformative about being looked after.
+        </blockquote>
+        <p>— THE ABID SALON WAY</p>
+      </section>
+      <section class="booking section" id="book">
+        <div class="booking-heading">
+          <p class="eyebrow">Your time</p>
+          <h2>Make it <em>yours.</em></h2>
+          <p>Choose your service and we’ll take care of the rest.</p>
+        </div>
+        <form id="appointment-form" class="form-card">
+          <div class="form-row">
+            <label
+              >Name<input
+                name="name"
+                required
+                placeholder="Your full name" /></label
+            ><label
+              >Phone <span>(required)</span
+              ><input
+                name="phone"
+                required
+                type="tel"
+                placeholder="+1 000 000 0000"
+            /></label>
+          </div>
+          <div class="form-row">
+            <label
+              >Email <span>(optional)</span
+              ><input
+                name="email"
+                type="email"
+                placeholder="you@example.com" /></label
+            ><fieldset class="service-fieldset"><legend>Services <span>(choose one or more)</span></legend><div class="service-options"><label><input type="checkbox" name="service" value="Haircut"><span>Haircut</span></label><label><input type="checkbox" name="service" value="Beard"><span>Beard</span></label><label><input type="checkbox" name="service" value="Hair colour"><span>Hair colour</span></label><label><input type="checkbox" name="service" value="Threading"><span>Threading</span></label><label><input type="checkbox" name="service" value="Wash & style"><span>Wash & style</span></label><label><input type="checkbox" name="service" value="Shaving"><span>Shaving</span></label></div></fieldset>
+          </div>
+          <div class="form-row">
+            <label>Date<input id="appointment-date" name="date" required type="date" /></label
+            ><label
+              >Time<input name="time" type="text" required placeholder="e.g. 10:30 AM" /></label>
+          </div>
+          <fieldset>
+            <legend>I am booking as</legend>
+            <div class="audience-options">
+              <label
+                ><input type="radio" name="audience" value="men" checked /><span
+                  >Men</span
+                ></label
+              ><label
+                ><input type="radio" name="audience" value="women" /><span
+                  >Women</span
+                ></label
+              ><label
+                ><input type="radio" name="audience" value="custom" /><span
+                  >Custom</span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <button class="button button-dark" type="submit">
+            Request appointment <span>↗</span>
+          </button>
+          <p class="form-status" aria-live="polite"></p>
+          <p class="booking-note">Open Monday to Saturday, 9:00 AM–9:00 PM. Closed Sundays. Each selected service reserves 10 minutes.</p>
+          <div id="private-card" class="private-card" hidden></div>
+        </form>
+      </section>
+      <section class="about section" id="about">
+        <div class="about-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.691129799413!2d23.80693347540988!3d38.054282696010915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a198d572e9339d%3A0x42c5f448dc6d985a!2sMitropoleos%2036%2C%20Marousi%20151%2024!5e0!3m2!1sen!2sgr!4v1790287939888!5m2!1sen!2sgr"
+            width="600"
+            height="450"
+            style="border: 0; width: 100%; height: 100%; display: block"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Abid Salon location"
+          ></iframe>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">Come find us</p>
+          <h2>A small room<br />with <em>good energy.</em></h2>
+          <p>
+            We’re tucked into Willow Lane, surrounded by old trees and the kind
+            of afternoon light that makes everyone look good.
+          </p>
+          <div class="contact-grid">
+            <div>
+              <span>Visit</span
+              ><strong data-shop="address">Mitropoleos 36, marousi</strong>
+            </div>
+            <div>
+              <span>Call</span
+              ><strong data-shop="phone">694 911 30 79</strong>
+            </div>
+            <div>
+              <span>Write</span
+              ><strong data-shop="email">abidsalon1@gmail.com</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="complaint section">
+        <div>
+          <p class="eyebrow">Something to share?</p>
+          <h2>We’re listening.</h2>
+        </div>
+        <form id="complaint-form">
+          <div class="form-row">
+            <label>Name<input name="name" required /></label
+            ><label
+              >Phone <span>(required)</span
+              ><input name="phone" required type="tel"
+            /></label>
+          </div>
+          <div class="form-row">
+            <label>Email<input name="email" type="email" /></label
+            ><label>Visit date<input name="date" required type="date" /></label>
+          </div>
+          <label
+            >Visit time<select name="time" required>
+              <option value="">Choose a time</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select></label
+          ><label
+            >What happened?<textarea
+              name="message"
+              required
+              rows="4"
+              placeholder="Tell us how we can make it right."
+            ></textarea></label
+          ><button class="button button-outline" type="submit">
+            Send privately <span>↗</span>
+          </button>
+          <p class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <a class="brand" href="#top"
+        ><span class="brand-mark">A</span><span>Abid Salon</span></a
+      >
+      <p>Good hair, better days.</p>
+      <small>© 2026 Abid Salon · Made with care</small>
+    </footer>
+    <script src="/i18n.js" defer></script>
+    <link rel="stylesheet" href="/service-catalog.css" />
+    <script src="/app.js" defer></script>
+  </body>
+</html>

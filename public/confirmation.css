@@ -1,0 +1,138 @@
+.private-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: 28px;
+  padding: 28px 30px 24px;
+  color: #ffffff;
+  background: #12345b;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-left: 5px solid #7ec8ff;
+  box-shadow: 12px 12px 0 rgba(10, 35, 65, 0.28);
+  transform-origin: top center;
+  animation: card-breathe 5s ease-in-out infinite;
+}
+
+.private-card.card-reveal {
+  animation: card-reveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) both, card-breathe 5s ease-in-out 0.75s infinite;
+}
+
+.private-card::after {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  content: 'PRIVATE CONFIRMATION';
+  color: #bfe4ff;
+  font: 10px var(--mono);
+  letter-spacing: 0.12em;
+}
+
+.card-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: #7ec8ff;
+  font: 11px var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.card-seal {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border: 1px solid #7ec8ff;
+  border-radius: 50%;
+  color: #ffffff;
+  font: 600 16px 'Cormorant Garamond', serif;
+  letter-spacing: 0;
+}
+
+.private-card h3 {
+  max-width: 440px;
+  margin: 0 180px 5px 0;
+  color: #ffffff;
+  font: 600 clamp(36px, 5vw, 58px) / 0.92 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: -0.035em;
+}
+
+.private-card .card-note {
+  max-width: 410px;
+  margin: 0 0 25px;
+  color: #bfe4ff;
+  font: 14px/1.5 var(--sans);
+}
+
+.card-details {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 14px;
+  padding: 19px 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.card-details div {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.card-details span {
+  color: #bfe4ff;
+  font: 10px var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.card-details strong {
+  overflow: hidden;
+  color: #ffffff;
+  font: 600 16px/1.1 var(--sans);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  color: #bfe4ff;
+  font: 11px var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card-footer span:last-child {
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes card-reveal {
+  0% { opacity: 0; transform: translateY(22px) rotateX(-8deg); }
+  65% { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+@keyframes card-breathe {
+  0%, 100% { box-shadow: 12px 12px 0 rgba(10, 35, 65, 0.28), 0 0 0 rgba(126, 200, 255, 0); }
+  50% { box-shadow: 12px 12px 0 rgba(10, 35, 65, 0.28), 0 0 24px rgba(126, 200, 255, 0.2); }
+}
+
+@media (max-width: 700px) {
+  .private-card { padding: 24px 20px 20px; }
+  .private-card::after { position: static; display: block; margin-top: 20px; }
+  .private-card h3 { margin-right: 0; }
+  .card-details { grid-template-columns: 1fr 1fr; }
+  .card-footer { display: grid; gap: 8px; }
+  .card-footer span:last-child { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .private-card,
+  .private-card.card-reveal { animation: none; }
+}

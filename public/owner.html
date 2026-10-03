@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner appointments | Abid Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/owner.css">
+  <link rel="stylesheet" href="/i18n.css">
+</head>
+<body class="owner-page">
+  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">A</span><span>Abid Salon</span></a><button id="logout-button" class="button button-dark" type="button" hidden>Sign out</button></header>
+  <main class="owner-main">
+    <section id="login-view" class="owner-login">
+      <p class="eyebrow">Private owner area</p>
+      <h1>Appointments, <em>at a glance.</em></h1>
+      <p>Sign in to see customer contact details and booking times.</p>
+      <form id="login-form" class="form-card"><label>Owner password<input name="password" type="password" required autocomplete="current-password"></label><button class="button button-dark" type="submit">Sign in <span>↗</span></button><p id="login-status" class="form-status" aria-live="polite"></p></form>
+    </section>
+    <section id="dashboard-view" hidden>
+      <div class="owner-heading"><div><p class="eyebrow">Private owner area</p><h1>Upcoming <em>appointments.</em></h1></div><p id="dashboard-status" class="form-status" aria-live="polite"></p></div>
+      <section class="owner-settings" aria-labelledby="settings-title">
+        <div><p class="eyebrow">Booking access</p><h2 id="settings-title">Who can book?</h2><p>Turn a category on to accept new appointments from it.</p></div>
+        <form id="settings-form" class="settings-options">
+          <label><input type="checkbox" name="men"><span>Men</span></label>
+          <label><input type="checkbox" name="women"><span>Women</span></label>
+          <label><input type="checkbox" name="custom"><span>Custom</span></label>
+          <button class="button button-dark" type="submit">Save access <span>↗</span></button>
+          <p id="settings-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+      <section class="owner-services" aria-labelledby="services-title">
+        <div><p class="eyebrow">Service list</p><h2 id="services-title">Edit prices and add services</h2><p>Update the prices shown on the public website and add new services by category.</p></div>
+        <form id="services-form" class="service-editor-form">
+          <div id="owner-service-lists" class="owner-service-lists"></div>
+          <button class="button button-dark" type="submit">Save service list <span>↗</span></button>
+          <p id="services-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+      <div class="owner-table-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Customer</th><th>Phone</th><th>Email</th><th>Service</th><th>Category</th></tr></thead><tbody id="appointments-body"></tbody></table></div>
+    </section>
+  </main>
+  <link rel="stylesheet" href="/service-catalog.css" />
+  <script src="/i18n.js" defer></script>
+  <script src="/owner.js" defer></script>
+</body>
+</html>
