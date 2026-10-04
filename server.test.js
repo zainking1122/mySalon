@@ -144,16 +144,6 @@ test('appointments, complaints and owner settings persist in SQLite after restar
     const appointmentData = await appointmentResponse.json();
     assert.equal(appointmentResponse.status, 201, appointmentData.error);
 
-    const customerCardResponse = await fetch(`${baseUrl}/api/appointments/${appointmentData.appointment.id}`);
-    const customerCardData = await customerCardResponse.json();
-    assert.equal(customerCardResponse.status, 200);
-    assert.equal(customerCardResponse.headers.get('cache-control'), 'private, no-store');
-    assert.equal(customerCardData.appointment.id, appointmentData.appointment.id);
-    assert.equal(customerCardData.appointment.name, 'Test Client');
-
-    const unknownCardResponse = await fetch(`${baseUrl}/api/appointments/00000000-0000-4000-8000-000000000000`);
-    assert.equal(unknownCardResponse.status, 404);
-
     const complaintResponse = await fetch(`${baseUrl}/api/complaints`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

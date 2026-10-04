@@ -111,21 +111,6 @@ function showStatus(form, message, type = '') {
   status.className = `form-status ${type}`;
 }
 
-function saveAppointmentCardId(id) {
-  try {
-    const savedIds = JSON.parse(localStorage.getItem('salon-appointment-card-ids') || '[]');
-    if (!Array.isArray(savedIds)) throw new Error('Saved appointment list is invalid.');
-
-    const ids = savedIds.filter((savedId) => /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(savedId));
-    if (!ids.includes(id)) ids.push(id);
-    localStorage.setItem('salon-appointment-card-ids', JSON.stringify(ids));
-    return true;
-  } catch (error) {
-    console.error('Could not save appointment card access on this device.', error);
-    return false;
-  }
-}
-
 async function postForm(url, form) {
   const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formToObject(form)) });
   const data = await response.json();
@@ -161,11 +146,7 @@ document.querySelector('#appointment-form').addEventListener('submit', async (ev
   try {
     showStatus(form, 'Sending your request...', '');
     const data = await postForm('/api/appointments', form);
-    const cardIdSaved = saveAppointmentCardId(data.appointment.id);
-    showStatus(form, cardIdSaved
-      ? (data.emailSent ? 'You are on the list. We sent your request to the studio.' : 'Saved locally, but email delivery is not configured yet.')
-      : 'Your appointment was saved, but this device could not save access to your card. Keep this page open to view it now.',
-    cardIdSaved && data.emailSent ? 'success' : 'error');
+    showStatus(form, data.emailSent ? 'You are on the list. We sent your request to the studio.' : 'Saved locally, but email delivery is not configured yet.', data.emailSent ? 'success' : 'error');
     const privateCard = document.querySelector('#private-card');
     privateCard.hidden = false;
     privateCard.innerHTML = `<div class="card-kicker"><span>Appointment confirmed</span><span class="card-seal">A</span></div><h3>Your chair is waiting.</h3><p class="card-note">Show this appointment card at the shop and arrive 10 minutes early for better service.</p><div class="card-details"><div><span>Guest</span><strong>${escapeHtml(data.appointment.name)}</strong></div><div><span>Services</span><strong>${escapeHtml(data.appointment.service)}</strong></div><div><span>Date</span><strong>${escapeHtml(data.appointment.date)}</strong></div><div><span>Time</span><strong>${escapeHtml(data.appointment.time)}</strong></div></div><div class="card-footer"><span>${escapeHtml(data.appointment.audience)}</span><span>${escapeHtml(data.appointment.phone)}${data.appointment.email ? ` · ${escapeHtml(data.appointment.email)}` : ''}</span></div>`;
