@@ -376,13 +376,13 @@ app.get('*', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'index.h
 async function startServer() {
   await initializeDatabase();
 
-  app.listen(port, () => {
+  app.listen(port, '0.0.0.0', () => {
     purgeExpiredAppointments().catch((error) => console.error(`Appointment cleanup failed: ${error.message}`));
     setInterval(() => {
       purgeExpiredAppointments().catch((error) => console.error(`Appointment cleanup failed: ${error.message}`));
     }, 60 * 60 * 1000).unref();
 
-    console.log(`${shop.name} is running at http://localhost:${port}`);
+    console.log(`${shop.name} is running at http://0.0.0.0:${port}`);
   });
 }
 
