@@ -272,6 +272,19 @@ app.get('/api/owner/appointments', requireOwner, async (_req, res) => {
   res.json(appointments);
 });
 
+app.get('/api/appointments/:id', async (req, res) => {
+  res.set('Cache-Control', 'private, no-store');
+  const id = clean(req.params.id, 40);
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) {
+    return res.status(404).json({ error: 'Appointment card not found.' });
+  }
+
+  const [rows] = await db.query('SELECT data FROM appointments WHERE id = ? LIMIT 1', [id]);
+  if (!rows.length) return res.status(404).json({ error: 'Appointment card not found.' });
+
+  res.json({ appointment: JSON.parse(rows[0].data) });
+});
+
 app.post('/api/appointments', async (req, res) => {
   const form = validateContact(req.body);
   const date = clean(req.body.date, 20);
