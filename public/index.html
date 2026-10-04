@@ -91,6 +91,13 @@
       footer small {
         font-size: 11px;
       }
+      .date-input {
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+        touch-action: manipulation;
+        color-scheme: dark;
+      }
     </style>
     <style>
       :root {
@@ -269,7 +276,7 @@
             ><fieldset class="service-fieldset"><legend>Services <span>(choose one or more)</span></legend><div class="service-options"><label><input type="checkbox" name="service" value="Haircut"><span>Haircut</span></label><label><input type="checkbox" name="service" value="Beard"><span>Beard</span></label><label><input type="checkbox" name="service" value="Hair colour"><span>Hair colour</span></label><label><input type="checkbox" name="service" value="Threading"><span>Threading</span></label><label><input type="checkbox" name="service" value="Wash & style"><span>Wash & style</span></label><label><input type="checkbox" name="service" value="Shaving"><span>Shaving</span></label></div></fieldset>
           </div>
           <div class="form-row">
-            <label>Date<input id="appointment-date" name="date" required type="text" /></label>
+            <label>Date<input id="appointment-date" class="date-input" name="date" required type="date" /></label>
             <label>Time<input name="time" type="text" required placeholder="e.g. 10:30 AM" /></label>
           </div>
           <fieldset>
@@ -349,7 +356,7 @@
           </div>
           <div class="form-row">
             <label>Email<input name="email" type="email" /></label
-            ><label>Visit date<input name="date" required type="date" /></label>
+            ><label>Visit date<input class="date-input" name="date" required type="date" /></label>
           </div>
           <label
             >Visit time<select name="time" required>
