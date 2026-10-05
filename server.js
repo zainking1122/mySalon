@@ -325,6 +325,25 @@ app.post('/api/appointments', async (req, res) => {
   res.status(201).json({ appointment, emailSent });
 });
 
+app.get('/api/appointments/:id/card', async (req, res) => {
+  res.setHeader('Cache-Control', 'private, no-store');
+  const id = clean(req.params.id, 64);
+  const [rows] = await db.query('SELECT data FROM appointments WHERE id = ?', [id]);
+  if (!rows.length) return res.status(404).json({ error: 'Appointment card not found.' });
+
+  const appointment = JSON.parse(rows[0].data);
+  res.json({
+    appointment: {
+      id: appointment.id,
+      name: appointment.name,
+      date: appointment.date,
+      time: appointment.time,
+      service: appointment.service,
+      audience: appointment.audience
+    }
+  });
+});
+
 app.post('/api/complaints', async (req, res) => {
   const form = validateContact(req.body);
   const date = clean(req.body.date, 20);
@@ -371,6 +390,7 @@ app.post('/api/owner/services', requireOwner, async (req, res) => {
 });
 
 app.get('/owner', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'owner.html')));
+app.get('/my-card', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'my-card.html')));
 app.get('*', (_req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 async function startServer() {

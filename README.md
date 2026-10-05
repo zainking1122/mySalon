@@ -14,6 +14,8 @@ Set `DATABASE_PATH` in `.env` to choose the SQLite database file; it defaults to
 
 Open `http://localhost:3000`. The site works without SMTP configured; submitted appointments are saved in SQLite and appear in the private owner dashboard. Email delivery uses Gmail SMTP. Turn on 2-Step Verification for `salonabid46@gmail.com`, create a Google App Password, and replace `SMTP_PASS` in `.env` with that 16-character App Password. Do not use the normal Gmail password.
 
+Customers can open `/my-card` from the homepage hero or use the personal link shown after booking. The appointment reference is a private access code: anyone who has it can view that appointment's card, so customers should not share it publicly. The card page displays only the appointment associated with that reference and does not expose the appointment list or customer contact details.
+
 ## Owner controls
 
 Open `/owner` after deployment and sign in with `OWNER_PASSWORD` to see the private appointment dashboard. Appointment contact details are available only through the authenticated owner session; the public website does not load the appointment list. Entries older than 30 days are automatically removed at server startup, every hour while the server runs, when the owner dashboard is opened, and when a new appointment is created. Appointments from the most recent 30 days are retained.

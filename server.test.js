@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -143,6 +144,22 @@ test('appointments, complaints and owner settings persist in SQLite after restar
     });
     const appointmentData = await appointmentResponse.json();
     assert.equal(appointmentResponse.status, 201, appointmentData.error);
+
+    const personalCardResponse = await fetch(`${baseUrl}/api/appointments/${appointmentData.appointment.id}/card`);
+    const personalCardData = await personalCardResponse.json();
+    assert.equal(personalCardResponse.status, 200);
+    assert.deepEqual(personalCardData.appointment, {
+      id: appointmentData.appointment.id,
+      name: 'Test Client',
+      date,
+      time: '11:00 AM',
+      service: 'Hair cutting',
+      audience: 'women'
+    });
+    assert.equal(personalCardResponse.headers.get('cache-control'), 'private, no-store');
+
+    const missingCardResponse = await fetch(`${baseUrl}/api/appointments/${crypto.randomUUID()}/card`);
+    assert.equal(missingCardResponse.status, 404);
 
     const complaintResponse = await fetch(`${baseUrl}/api/complaints`, {
       method: 'POST',

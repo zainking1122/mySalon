@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      name="description"
+      content="View your private Abid Salon appointment card."
+    />
+    <title>Your appointment card | Abid Salon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/my-card.css" />
+    <script src="/my-card.js" defer></script>
+  </head>
+  <body>
+    <main class="card-page">
+      <a class="brand" href="/"><span class="brand-mark">A</span> Abid Salon</a>
+      <section class="card-content" aria-labelledby="page-title">
+        <p class="eyebrow">A little time, just for you</p>
+        <h1 id="page-title">Your appointment<br /><em>card.</em></h1>
+        <p class="intro">
+          Enter the private reference from your booking confirmation to view
+          your appointment.
+        </p>
+        <form id="card-lookup">
+          <label for="appointment-reference">Appointment reference</label>
+          <div class="lookup-row">
+            <input
+              id="appointment-reference"
+              name="reference"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              required
+              placeholder="Paste your appointment reference"
+            />
+            <button type="submit">View card <span>↗</span></button>
+          </div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <article id="personal-card" class="personal-card" hidden></article>
+        <a class="back-link" href="/">← Back to Abid Salon</a>
+      </section>
+      <footer>© 2026 Abid Salon · Made with care</footer>
+    </main>
+  </body>
+</html>
