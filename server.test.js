@@ -144,8 +144,10 @@ test('appointments, complaints and owner settings persist in SQLite after restar
     });
     const appointmentData = await appointmentResponse.json();
     assert.equal(appointmentResponse.status, 201, appointmentData.error);
+    assert.match(appointmentData.appointment.id, /^[2-9A-HJ-NP-Z]{10}$/);
 
-    const personalCardResponse = await fetch(`${baseUrl}/api/appointments/${appointmentData.appointment.id}/card`);
+    const formattedReference = `${appointmentData.appointment.id.slice(0, 5)}-${appointmentData.appointment.id.slice(5)}`;
+    const personalCardResponse = await fetch(`${baseUrl}/api/appointments/${formattedReference}/card`);
     const personalCardData = await personalCardResponse.json();
     assert.equal(personalCardResponse.status, 200);
     assert.deepEqual(personalCardData.appointment, {

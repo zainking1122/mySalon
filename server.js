@@ -159,6 +159,11 @@ function clean(value, maxLength = 120) {
   return String(value || '').trim().slice(0, maxLength);
 }
 
+function generateAppointmentCode() {
+  const alphabet = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+  return [...crypto.randomBytes(10)].map((byte) => alphabet[byte & 31]).join('');
+}
+
 function parseTimeToMinutes(value) {
   const time = clean(value, 20).toUpperCase().replace(/\s+/g, ' ');
   const match = time.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/);
@@ -306,7 +311,7 @@ app.post('/api/appointments', async (req, res) => {
     return res.status(409).json({ error: `That time is unavailable because another appointment runs from ${conflict.time}. Please choose a later time.` });
   }
 
-  const appointment = { id: crypto.randomUUID(), ...form, date, time, service, audience, createdAt: new Date() };
+  const appointment = { id: generateAppointmentCode(), ...form, date, time, service, audience, createdAt: new Date() };
   const storedAppointment = { ...appointment, createdAt: appointment.createdAt.toISOString() };
 
   await db.query('INSERT INTO appointments (id, date, time, createdAt, data) VALUES (?, ?, ?, ?, ?)', [
@@ -328,7 +333,13 @@ app.post('/api/appointments', async (req, res) => {
 app.get('/api/appointments/:id/card', async (req, res) => {
   res.setHeader('Cache-Control', 'private, no-store');
   const id = clean(req.params.id, 64);
-  const [rows] = await db.query('SELECT data FROM appointments WHERE id = ?', [id]);
+  let [rows] = await db.query('SELECT data FROM appointments WHERE id = ?', [id]);
+  if (!rows.length) {
+    const compactCode = id.replace(/[-\s]/g, '').toUpperCase();
+    if (compactCode !== id) {
+      [rows] = await db.query('SELECT data FROM appointments WHERE id = ?', [compactCode]);
+    }
+  }
   if (!rows.length) return res.status(404).json({ error: 'Appointment card not found.' });
 
   const appointment = JSON.parse(rows[0].data);

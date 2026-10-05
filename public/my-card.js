@@ -18,6 +18,13 @@ function showStatus(message, type = '') {
   status.className = `form-status ${type}`;
 }
 
+function formatReference(reference) {
+  const compactReference = reference.replace(/[-\s]/g, '').toUpperCase();
+  return compactReference.length === 10
+    ? `${compactReference.slice(0, 5)}-${compactReference.slice(5)}`
+    : reference;
+}
+
 async function loadCard(reference) {
   const response = await fetch(`/api/appointments/${encodeURIComponent(reference)}/card`, {
     headers: { Accept: 'application/json' },
@@ -39,7 +46,7 @@ async function loadCard(reference) {
     </div>
     <div class="card-footer">
       <span>${escapeHtml(appointment.audience)}</span>
-      <span>Reference: ${escapeHtml(appointment.id)}</span>
+      <span>Reference: ${escapeHtml(formatReference(appointment.id))}</span>
     </div>`;
   cardRoot.hidden = false;
   showStatus('');
